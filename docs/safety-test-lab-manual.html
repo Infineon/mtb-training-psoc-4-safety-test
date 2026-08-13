@@ -1,0 +1,1364 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Hands-on training manual for the PSOC™ 4 Safety Test Library (mtb-stl), covering core peripherals, analog peripherals, and communication block safety tests.
+">
+      
+      
+        <meta name="author" content="Infineon Technologies AG">
+      
+      
+      
+        <link rel="prev" href="index.html">
+      
+      
+      
+        
+      
+      
+      <link rel="icon" href="assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>Lab Manual - PSOC™ 4 Training: Safety Test Library</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
+    <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#psoctm-4-safety-test-library-training-manual" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="index.html" title="PSOC™ 4 Training: Safety Test Library" class="md-header__button md-logo" aria-label="PSOC™ 4 Training: Safety Test Library" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            PSOC™ 4 Training: Safety Test Library
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Lab Manual
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="teal" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+        <div class="md-search__suggest" data-md-component="search-suggest"></div>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+      <div class="md-header__source">
+        <a href="https://github.com/Infineon/mtb-training-psoc-4-safety-test" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-4-safety-test
+  </div>
+</a>
+      </div>
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+  
+
+<nav class="md-nav md-nav--primary md-nav--integrated" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="index.html" title="PSOC™ 4 Training: Safety Test Library" class="md-nav__button md-logo" aria-label="PSOC™ 4 Training: Safety Test Library" data-md-component="logo">
+      
+  <img src="assets/images/infineon_logo.png" alt="logo">
+
+    </a>
+    PSOC™ 4 Training: Safety Test Library
+  </label>
+  
+    <div class="md-nav__source">
+      <a href="https://github.com/Infineon/mtb-training-psoc-4-safety-test" title="Go to repository" class="md-source" data-md-component="source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><!--! Font Awesome Free 7.1.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license/free (Icons: CC BY 4.0, Fonts: SIL OFL 1.1, Code: MIT License) Copyright 2025 Fonticons, Inc.--><path d="M439.6 236.1 244 40.5c-5.4-5.5-12.8-8.5-20.4-8.5s-15 3-20.4 8.4L162.5 81l51.5 51.5c27.1-9.1 52.7 16.8 43.4 43.7l49.7 49.7c34.2-11.8 61.2 31 35.5 56.7-26.5 26.5-70.2-2.9-56-37.3L240.3 199v121.9c25.3 12.5 22.3 41.8 9.1 55-6.4 6.4-15.2 10.1-24.3 10.1s-17.8-3.6-24.3-10.1c-17.6-17.6-11.1-46.9 11.2-56v-123c-20.8-8.5-24.6-30.7-18.6-45L142.6 101 8.5 235.1C3 240.6 0 247.9 0 255.5s3 15 8.5 20.4l195.6 195.7c5.4 5.4 12.7 8.4 20.4 8.4s15-3 20.4-8.4l194.7-194.7c5.4-5.4 8.4-12.8 8.4-20.4s-3-15-8.4-20.4"/></svg>
+  </div>
+  <div class="md-source__repository">
+    Infineon/mtb-training-psoc-4-safety-test
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="index.html" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Home
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Manual
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="safety-test-lab-manual.html" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Lab Manual
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+  
+
+<nav class="md-nav md-nav--secondary" aria-label="On this page">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      On this page
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#about-this-document" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        About this document
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#scope-and-purpose" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Scope and purpose
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#intended-audience" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Intended audience
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#introduction" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Introduction
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#required-development-tools-and-prerequisites" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Required development tools and prerequisites
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#adding-mtb-stl-to-an-existing-project" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Adding mtb-stl to an existing project
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executing-the-core-peripherals-safety-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executing the core peripherals safety tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executing-the-analog-peripherals-safety-tests" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executing the analog peripherals safety tests
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#executing-the-communication-block-safety-test" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Executing the communication block safety test
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#revision-history" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Revision history
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+  
+  
+
+
+<h1 id="psoctm-4-safety-test-library-training-manual">PSOC&trade; 4 Safety test library training manual<a class="headerlink" href="#psoctm-4-safety-test-library-training-manual" title="Permanent link">&para;</a></h1>
+<h2 id="about-this-document">About this document<a class="headerlink" href="#about-this-document" title="Permanent link">&para;</a></h2>
+<p>This is the lab manual for the PSOC&trade; 4 safety test library (mtb-stl) training.</p>
+<h2 id="scope-and-purpose">Scope and purpose<a class="headerlink" href="#scope-and-purpose" title="Permanent link">&para;</a></h2>
+<p>In these labs, you will learn the following:</p>
+<ul>
+<li>Add the mtb-stl middleware to your project</li>
+<li>Execute the core peripherals safety tests</li>
+<li>Execute the analog peripherals safety tests</li>
+<li>Execute the communication block safety tests</li>
+</ul>
+<h2 id="intended-audience">Intended audience<a class="headerlink" href="#intended-audience" title="Permanent link">&para;</a></h2>
+<p>This manual is intended for design engineers, technicians, and developers of electronic systems.</p>
+<h3 id="table-of-contents">Table of contents<a class="headerlink" href="#table-of-contents" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="#about-this-document">About this document</a></li>
+<li><a href="#scope-and-purpose">Scope and purpose</a></li>
+<li><a href="#intended-audience">Intended audience</a></li>
+<li><a href="#table-of-contents">Table of contents</a></li>
+<li><a href="#introduction">Introduction</a></li>
+<li><a href="#required-development-tools-and-prerequisites">Required development tools and prerequisites</a></li>
+<li><a href="#adding-mtb-stl-to-an-existing-project">Adding mtb-stl to an existing project</a></li>
+<li><a href="#executing-the-core-peripherals-safety-tests">Executing the core peripherals safety tests</a></li>
+<li><a href="#executing-the-analog-peripherals-safety-tests">Executing the analog peripherals safety tests</a></li>
+<li><a href="#executing-the-communication-block-safety-test">Executing the communication block safety test</a></li>
+<li><a href="#references">References</a></li>
+<li><a href="#revision-history">Revision history</a></li>
+<li><a href="#disclaimer">Disclaimer</a></li>
+</ul>
+<h2 id="introduction">Introduction<a class="headerlink" href="#introduction" title="Permanent link">&para;</a></h2>
+<p>This manual provides instructions to add the mtb-stl middleware to an existing project. It also provides instructions for creating code examples to execute the core peripherals safety test, analog peripherals safety tests, and communication block safety test.</p>
+<h2 id="required-development-tools-and-prerequisites">Required development tools and prerequisites<a class="headerlink" href="#required-development-tools-and-prerequisites" title="Permanent link">&para;</a></h2>
+<h3 id="tools">Tools<a class="headerlink" href="#tools" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://softwaretools.infineon.com/tools/com.ifx.tb.tool.modustoolboxsetup">ModusToolbox&trade;</a> software v3.6 or later (tested with v3.6)</li>
+<li>ModusToolbox&trade; CAPSENSE&trade; and Multi-Sense Pack</li>
+<li>A <a href="https://www.infineon.com/evaluation-board/CY8CKIT-005-A">MiniProg4 (CY8CKIT-005-A)</a> programmer/debugger</li>
+<li>Jumper wires (4 qty)</li>
+<li>150 kΩ and 75 kΩ through-hole resistors</li>
+<li>A breadboard</li>
+<li>PSOC&trade; 4100T Plus Prototyping Kit - <a href="https://www.infineon.com/evaluation-board/CY8CPROTO-041TP">CY8CPROTO-041TP</a></li>
+</ul>
+<p><img src="assets/images/cy8cproto_041tp.png" alt="Figure" style="width:400px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="prerequisites">Prerequisites<a class="headerlink" href="#prerequisites" title="Permanent link">&para;</a></h3>
+<ul>
+<li><a href="https://github.com/Infineon/mtb-training-psoc-digital-peripherals">PSOC&trade; digital peripherals training</a></li>
+<li><a href="https://softwaretools.infineon.com/tools/com.ifx.tb.tool.modustoolboxsetup">ModusToolbox&trade;</a> software v3.6</li>
+<li>Eclipse IDE for ModusToolbox&trade;</li>
+</ul>
+<h2 id="adding-mtb-stl-to-an-existing-project">Adding mtb-stl to an existing project<a class="headerlink" href="#adding-mtb-stl-to-an-existing-project" title="Permanent link">&para;</a></h2>
+<h3 id="objective">Objective<a class="headerlink" href="#objective" title="Permanent link">&para;</a></h3>
+<p>In this lab, you will create the hello world example project and then add the mtb-stl middleware to the project using the library manager. Once the mtb-stl middleware is added, you will add the program counter safety test to the application and then build and run the program.</p>
+<h3 id="project-creation">Project creation<a class="headerlink" href="#project-creation" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Before creating the first project in this training series, you need to create a workspace in ModusToolbox&trade;. Open <strong>ModusToolbox&trade;</strong> from the <strong>Windows Start</strong> menu.</p>
+<blockquote>
+<p><strong>Note:</strong> If you have not installed ModusToolbox&trade;, see the <a href="#tools">Tools</a> section. If you have already created a workspace, skip this step and go to <a href="#step-4-project-creation">step 4</a>.</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="assets/images/launching_eclipse_from_windows_11.png" alt="Figure" style="width:300px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>Choose a <strong>workspace directory</strong> for your project. After selecting a suitable directory, click <strong>Launch</strong>.</li>
+</ol>
+<p><img src="assets/images/selecting_the_workspace.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>Click <strong>Launch</strong>, and a new ModusToolbox&trade; workspace will open, as shown below.</li>
+</ol>
+<p><img src="assets/images/eclipse_ide_after_launching.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>
+<p><span id="step-4-project-creation"></span> Select <strong>New Application</strong> from the Quick Panel or navigate to <strong>File → New → ModusToolbox&trade; Application</strong>. The <strong>Project Creator Tool</strong> opens.</p>
+</li>
+<li>
+<p>Choose the <strong>CY8CPROTO-041TP</strong> Board Support Package (<strong>BSP</strong>) under the PSOC&trade; 4 BSPs, and then click <strong>Next</strong>.</p>
+<blockquote>
+<p><strong>Note:</strong> BSPs are aligned with our development/evaluation kits; they provide files for basic device functionality. A BSP typically has a <strong>design.modus</strong> file that configures clocks and other board-specific capabilities. That file is used by the ModusToolbox&trade; configurators. A BSP also includes the required device support code for the device on the board. You can modify the configuration to suit your application.</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="assets/images/selecting_the_bsp.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="6">
+<li>Click <strong>Next</strong> and continue to the next menu of the Project Creator.</li>
+<li>Select the <strong>Hello World</strong> under the Getting Started section<ul>
+<li>Click the <strong>checkbox</strong> to the left of the application</li>
+<li>Set the <strong>New Application Name</strong> to <strong>safety_test</strong></li>
+<li>Click <strong>Create</strong></li>
+</ul>
+</li>
+</ol>
+<p><img src="assets/images/selecting_the_hello_world_application.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="8">
+<li>When you click <strong>Create</strong>, a new project is created, and you can see all the files in the Project Explorer window.</li>
+</ol>
+<p><img src="assets/images/eclipse_ide_after_project_creation.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="adding-the-safety-test-library-stl">Adding the Safety test library (STL)<a class="headerlink" href="#adding-the-safety-test-library-stl" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Click the <strong>safety_test</strong> project in the <strong>Project Explorer</strong>, and then open the library manager from the Eclipse IDE Quick Panel.</li>
+</ol>
+<p><img src="assets/images/launching_library_manager.png" alt="Figure" style="width:300px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>Click <strong>Add Library</strong>.</li>
+</ol>
+<p><img src="assets/images/adding_library.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>Search for <strong>stl</strong> in the <strong>Enter filter text...</strong> field, select the library from the results, and then press <strong>OK</strong>.</li>
+</ol>
+<p><img src="assets/images/adding_stl_library.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>Press <strong>Update</strong> in the Library Manager and wait for the libraries to be updated. Close the Library Manager.</li>
+</ol>
+<p><img src="assets/images/updating_libraries.png" alt="Figure" style="width:500px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="5">
+<li>
+<p>Once the Library Manager is closed, open the <code>main.c</code> file for the application.</p>
+</li>
+<li>
+<p>Add the include for the CPU self tests. </p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&quot;SelfTest_CPU.h&quot;</span>
+</code></pre></div>
+<ol start="7">
+<li>Add the code below to the main function just before the infinite for loop begins.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Self Test Program Counter</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="mi">0U</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">SelfTest_PC</span><span class="p">())</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Program Counter Test Passed</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">else</span><span class="w"> </span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Program Counter Test Failed</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<h3 id="programming-and-execution">Programming and execution<a class="headerlink" href="#programming-and-execution" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Ensure that the evaluation kit is connected to the PC, and then program the device from the Eclipse IDE Quick Panel.</li>
+</ol>
+<p><img src="assets/images/programming_from_eclipse_ide_quick_panel.png" alt="Figure" style="width:300px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="2">
+<li>Open a terminal.</li>
+</ol>
+<p><img src="assets/images/opening_a_terminal.png" alt="Figure" style="width:600px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>Observe the output.</li>
+</ol>
+<p><img src="assets/images/output_of_program_counter_self_test.png" alt="Figure" style="width:400px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="conclusion">Conclusion<a class="headerlink" href="#conclusion" title="Permanent link">&para;</a></h3>
+<p>In this exercise, you created the <strong>Hello World</strong> project and then added the safety test library to the project. Once the STL was added, you added the program counter safety test to confirm that the CPU PC is operating as expected before the application began blinking the LED every half second.</p>
+<h2 id="executing-the-core-peripherals-safety-tests">Executing the core peripherals safety tests<a class="headerlink" href="#executing-the-core-peripherals-safety-tests" title="Permanent link">&para;</a></h2>
+<p>In this lab, you will create the <strong>Class-B Safety Test Core Peripherals</strong> code example and then execute it.</p>
+<h3 id="running-the-class-b-safety-test-core-peripherals-project">Running the Class-B safety test core peripherals project<a class="headerlink" href="#running-the-class-b-safety-test-core-peripherals-project" title="Permanent link">&para;</a></h3>
+<ol>
+<li>From the Eclipse IDE Quick Panel, select <strong>New Application</strong>. In the BSP panel, select the <strong>CY8CPROTO-041TP BSP</strong>.</li>
+<li>In the <strong>Peripherals</strong> drop-down, select the <strong>Class-B Safety Test Core Peripherals</strong> project, and then click <strong>Create</strong>.</li>
+</ol>
+<p><img src="assets/images/selecting_the_class_b_safety_test_core_peripherals_application.png" alt="Figure" style="width:400px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>After the project is created, program the application from the Eclipse IDE Quick Panel.</li>
+</ol>
+<p><img src="assets/images/programming_core_peripherals_application.png" alt="Figure" style="width:300px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>
+<p>Open a terminal and observe the output of the core peripherals self tests.</p>
+<blockquote>
+<p><strong>Note:</strong> The flash test fails because the stored checksum has not been updated based on the application binary. The <code>Flash_Test</code> function calculates the checksum based on the entire flash region of the part, excluding the last 8 bytes that are reserved for checksum storage. Modify the stored checksum by setting the <code>flash_StoredCheckSum</code> variable in <code>self_test.c</code>. The test reports the calculated checksum, so you can copy this value from the output terminal. If a terminal cannot be used, run the project in a debug session to obtain the checksum value for the flash test. See AN89056, Appendix A for more instructions.</p>
+</blockquote>
+</li>
+</ol>
+<p><img src="assets/images/output_of_core_peripherals_self_test.png" alt="Figure" style="width:300px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="5">
+<li>Copy the checksum from the terminal.</li>
+<li>Replace the value set for the <code>flash_StoredCheckSum</code> variable in <code>self_test.c</code> for the <strong>FLETCHER64</strong> test mode.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cp">#if (FLASH_TEST_MODE == FLASH_TEST_FLETCHER64)</span>
+<span class="k">static</span><span class="w"> </span><span class="k">volatile</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">uint64_t</span><span class="w"> </span><span class="n">flash_StoredCheckSum</span><span class="w"> </span><span class="n">__attribute__</span><span class="p">((</span><span class="n">used</span><span class="p">,</span><span class="w"> </span><span class="n">section</span><span class="p">(</span><span class="s">&quot;.flash_checksum&quot;</span><span class="p">)))</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mh">0x0CD7D49B0D6AF2F5</span><span class="p">;</span>
+<span class="cp">#endif</span>
+</code></pre></div>
+<ol start="7">
+<li>Reprogram the device and observe the terminal output.</li>
+</ol>
+<p><img src="assets/images/passing_core_peripherals_test.png" alt="Figure" style="width:400px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="enabling-runtime-safety-tests">Enabling runtime safety tests<a class="headerlink" href="#enabling-runtime-safety-tests" title="Permanent link">&para;</a></h3>
+<p>In this section of the lab, you will create one function to run self-tests during initialization and another function to run self-tests during runtime. It may not be desirable to run some self-tests, such as the WDT test and the GPIO test, during runtime.</p>
+<ol>
+<li>Open the <code>self_test.c</code> file and make the edits below to the <code>Clock_Test</code> function.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cm">/*****************************************************************************</span>
+<span class="cm">* Function Name: Clock_Test</span>
+<span class="cm">******************************************************************************</span>
+<span class="cm">* Summary:</span>
+<span class="cm">* Clock Test : Testing clock frequency using Independent Time slot</span>
+<span class="cm">* monitoring technique</span>
+<span class="cm">*</span>
+<span class="cm">* Parameters:</span>
+<span class="cm">*  initial_run: set to true if this is the first time executing this test.</span>
+<span class="cm">*</span>
+<span class="cm">* Return:</span>
+<span class="cm">*  void</span>
+<span class="cm">*****************************************************************************/</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Clock_Test</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">initial_run</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">INITIAL_TEST</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">initial_run</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="cm">/* Initialize WDT and Timer for Clock Self test */</span>
+<span class="w">        </span><span class="n">clock_test_init</span><span class="p">();</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(;;)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SelfTest_Clock</span><span class="p">(</span><span class="n">CYBSP_CLOCK_TEST_TIMER_HW</span><span class="p">,</span><span class="w"> </span><span class="n">CYBSP_CLOCK_TEST_TIMER_NUM</span><span class="p">);</span>
+<span class="w">        </span><span class="n">print_result</span><span class="p">(</span><span class="n">ip_index</span><span class="p">,</span><span class="s">&quot;Clock Test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PASS_STILL_TESTING_STATUS</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">ret</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_INDEX_VAL</span><span class="p">){</span>
+<span class="w">            </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0u</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">Cy_SysLib_ClearResetReason</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* Either you need to clear WDT interrupt periodically or</span>
+<span class="cm">     * disable it to ensure no WDT reset */</span>
+<span class="w">    </span><span class="n">Cy_WDT_ClearInterrupt</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Cy_WDT_Disable</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ip_index</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="2">
+<li>Make the edits below to the <code>Flash_Test</code> function.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cm">/*****************************************************************************</span>
+<span class="cm">* Function Name: Flash_Test</span>
+<span class="cm">******************************************************************************</span>
+<span class="cm">* Summary:</span>
+<span class="cm">* Flash Test : Testing the flash by comparing the stored checksum in</span>
+<span class="cm">* flash with calculated checksum of the data stored in flash.</span>
+<span class="cm">*</span>
+<span class="cm">* Parameters:</span>
+<span class="cm">*  initial_run: set to true if this is the first time executing this test. </span>
+<span class="cm">*</span>
+<span class="cm">* Return:</span>
+<span class="cm">*  void</span>
+<span class="cm">*****************************************************************************/</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Flash_Test</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">initial_run</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* Variable for output calculated Flash Checksum */</span>
+<span class="w">    </span><span class="kt">uint8_t</span><span class="w"> </span><span class="n">flash_CheckSum_temp</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">flash_CheckSum_act</span><span class="p">[</span><span class="mi">32</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">INITIAL_TEST</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">initial_run</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="cp">#if defined (__ICCARM__)</span>
+<span class="w">        </span><span class="n">IAR_Flash_Init</span><span class="p">();</span>
+<span class="cp">#else</span>
+<span class="w">        </span><span class="n">SelfTest_Flash_init</span><span class="p">(</span><span class="n">CY_FLASH_BASE</span><span class="p">,</span><span class="n">FLASH_END_ADDR</span><span class="p">,</span><span class="n">flash_StoredCheckSum</span><span class="p">);</span>
+<span class="cp">#endif</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="k">for</span><span class="p">(;;)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SelfTest_FlashCheckSum</span><span class="p">(</span><span class="n">FLASH_DOUBLE_WORDS_TO_TEST</span><span class="p">);</span>
+<span class="w">        </span><span class="n">print_result</span><span class="p">(</span><span class="n">ip_index</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Flash Test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ERROR_STATUS</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ret</span><span class="p">)</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="cp">#if(FLASH_TEST_MODE == FLASH_TEST_CRC32)</span>
+<span class="w">            </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">FLASH CRC: 0x&quot;</span><span class="p">);</span>
+<span class="cp">#elif (FLASH_TEST_MODE == FLASH_TEST_FLETCHER64)</span>
+<span class="w">            </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">FLASH CHECKSUM: 0x&quot;</span><span class="p">);</span>
+<span class="cp">#endif</span>
+<span class="w">            </span><span class="cm">/* Output calculated Flash Checksum */</span>
+<span class="w">            </span><span class="k">for</span><span class="p">(</span><span class="kt">int16_t</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">flash_CheckSum</span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="o">--</span><span class="p">)</span>
+<span class="w">            </span><span class="p">{</span>
+<span class="w">                </span><span class="n">flash_CheckSum_temp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="kt">uint8_t</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="n">flash_CheckSum</span><span class="w"> </span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="o">*</span><span class="mi">8u</span><span class="p">));</span>
+<span class="w">                </span><span class="n">sprintf</span><span class="p">(</span><span class="n">flash_CheckSum_act</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;%02X&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">flash_CheckSum_temp</span><span class="p">);</span>
+<span class="w">                </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="n">flash_CheckSum_act</span><span class="p">);</span>
+<span class="w">            </span><span class="p">}</span>
+<span class="w">            </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span><span class="w"> </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">PASS_COMPLETE_STATUS</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">ret</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="k">break</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="k">else</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="cm">/* Do Nothing */</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">        </span><span class="n">count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">count</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="n">MAX_INDEX_VAL</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
+<span class="w">            </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0u</span><span class="p">;</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="n">ip_index</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="3">
+<li>Make the following edits to <code>Start_Up_Test</code>.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cm">/*****************************************************************************</span>
+<span class="cm">* Function Name: Start_Up_Test</span>
+<span class="cm">******************************************************************************</span>
+<span class="cm">* Summary:</span>
+<span class="cm">* Start Up Test : This function checks the startup configuration registers.</span>
+<span class="cm">*</span>
+<span class="cm">* Parameters:</span>
+<span class="cm">*  initial_run: set to true if this is the first time executing this test. </span>
+<span class="cm">*</span>
+<span class="cm">* Return:</span>
+<span class="cm">*  void</span>
+<span class="cm">*****************************************************************************/</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Start_Up_Test</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">initial_run</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">INITIAL_TEST</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">initial_run</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="cp">#if COMPONENT_CAT1A</span>
+<span class="w">        </span><span class="cm">/* This function initilizes the AREF address depending on the device.*/</span>
+<span class="w">        </span><span class="n">SelfTests_Init_StartUp_ConfigReg</span><span class="p">();</span>
+<span class="cp">#endif</span>
+<span class="cp">#if (STARTUP_CFG_REGS_MODE == CFG_REGS_TO_FLASH_MODE)</span>
+<span class="w">        </span><span class="cm">/*******************************/</span>
+<span class="w">        </span><span class="cm">/* Save Start-Up registers...  */</span>
+<span class="w">        </span><span class="cm">/*******************************/</span>
+<span class="w">        </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">CY_FLASH_DRV_SUCCESS</span><span class="w">  </span><span class="o">!=</span><span class="w"> </span><span class="n">SelfTests_Save_StartUp_ConfigReg</span><span class="p">())</span>
+<span class="w">        </span><span class="p">{</span>
+<span class="w">            </span><span class="cm">/* Process error */</span>
+<span class="w">            </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="s">&quot;Error: Can&#39;t save Start-Up Config Registers</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">        </span><span class="p">}</span>
+<span class="cp">#endif </span><span class="cm">/* End (STARTUP_CFG_REGS_MODE == CFG_REGS_TO_FLASH_MODE) */</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">    </span><span class="cm">/**********************************/</span>
+<span class="w">    </span><span class="cm">/* Run Start-Up regs Self Test... */</span>
+<span class="w">    </span><span class="cm">/**********************************/</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SelfTests_StartUp_ConfigReg</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* Process error */</span>
+<span class="w">    </span><span class="n">print_result</span><span class="p">(</span><span class="n">ip_index</span><span class="o">++</span><span class="p">,</span><span class="s">&quot;Start-Up Register&quot;</span><span class="p">,</span><span class="n">ret</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="4">
+<li>Open the <code>self_test.h</code> file and make the edits below to the function definitions.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cp">#define INITIAL_TEST        (true)</span>
+<span class="cp">#define RUNTIME_TEST        (false)</span>
+<span class="cm">/*******************************************************************************</span>
+<span class="cm">* Function Prototypes</span>
+<span class="cm">********************************************************************************/</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Clock_Test</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">initial_run</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Flash_Test</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">initial_run</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Interrupt_Test</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">IO_Test</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">SRAM_March_Test</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Stack_March_Test</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Stack_Memory_Test</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Interrupt_test_Init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">clock_test_init</span><span class="p">(</span><span class="kt">void</span><span class="p">);</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">Start_Up_Test</span><span class="p">(</span><span class="kt">bool</span><span class="w"> </span><span class="n">initial_run</span><span class="p">);</span>
+</code></pre></div>
+<ol start="5">
+<li>In the <code>main.c</code> file, add the following variable after the MACRO definitions.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cm">/*******************************************************************************</span>
+<span class="cm">* Global Variables</span>
+<span class="cm">*******************************************************************************/</span>
+<span class="kt">uint32_t</span><span class="w"> </span><span class="n">test_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+</code></pre></div>
+<ol start="6">
+<li>In the <code>main.c</code> file, add the following functions for running the self-tests at program init and runtime.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">print_self_test_header</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* \x1b[2J\x1b[;H - ANSI ESC sequence for clear screen */</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="s">&quot;</span><span class="se">\x1b</span><span class="s">[2J</span><span class="se">\x1b</span><span class="s">[;H&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="s">&quot;*************** &quot;</span>
+<span class="w">           </span><span class="s">&quot;Class-B Safety Test for PSOC 4: Core Peripheral Resources &quot;</span>
+<span class="w">           </span><span class="s">&quot;************** </span><span class="se">\r\n\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="s">&quot;------------------------------------------------------- </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="s">&quot;| #   | IP under test                   | Test Status | </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="s">&quot;------------------------------------------------------- </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">print_self_test_footer</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">uart_disp_buff</span><span class="p">[</span><span class="mi">64</span><span class="p">]</span><span class="o">=</span><span class="p">{</span><span class="mi">0</span><span class="p">};</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="s">&quot;------------------------------------------------------- </span><span class="se">\r\n\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="s">&quot;END of the Core CPU Test.</span><span class="se">\r\n\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sprintf</span><span class="p">(</span><span class="n">uart_disp_buff</span><span class="p">,</span><span class="s">&quot;Total number of IPs covered in the Test      %d</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="o">--</span><span class="n">ip_index</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="n">uart_disp_buff</span><span class="p">);</span>
+<span class="w">    </span><span class="n">sprintf</span><span class="p">(</span><span class="n">uart_disp_buff</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Test Count %d &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">test_count</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="n">uart_disp_buff</span><span class="p">);</span>
+<span class="p">}</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run_initial_self_test</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">print_self_test_header</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ip_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* Start Up Test */</span>
+<span class="w">    </span><span class="n">Start_Up_Test</span><span class="p">(</span><span class="n">INITIAL_TEST</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* Program counter Test */</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SelfTest_PC</span><span class="p">();</span>
+<span class="w">    </span><span class="n">print_result</span><span class="p">(</span><span class="n">ip_index</span><span class="o">++</span><span class="p">,</span><span class="s">&quot;Program Counter Test&quot;</span><span class="p">,</span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* CPU Registers Test*/</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SelfTest_CPU_Registers</span><span class="p">();</span>
+<span class="w">    </span><span class="n">print_result</span><span class="p">(</span><span class="n">ip_index</span><span class="o">++</span><span class="p">,</span><span class="s">&quot;CPU Register Test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* Program Flow Test*/</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SelfTest_PROGRAM_FLOW</span><span class="p">();</span>
+<span class="w">    </span><span class="n">print_result</span><span class="p">(</span><span class="n">ip_index</span><span class="o">++</span><span class="p">,</span><span class="s">&quot;Program Flow Test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* Watch Dog Timer Test */</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SelfTest_WDT</span><span class="p">();</span>
+<span class="w">    </span><span class="n">print_result</span><span class="p">(</span><span class="n">ip_index</span><span class="o">++</span><span class="p">,</span><span class="s">&quot;Watchdog Test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* GPIO Test */</span>
+<span class="w">    </span><span class="n">IO_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cp">#if DMA_ENABLE</span>
+<span class="w">    </span><span class="cm">/* DMAC Test */</span>
+<span class="w">    </span><span class="n">DMAC_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cp">#endif</span>
+<span class="w">    </span><span class="cm">/* Clock Test */</span>
+<span class="w">    </span><span class="n">Clock_Test</span><span class="p">(</span><span class="n">INITIAL_TEST</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* Interrupt Test */</span>
+<span class="w">    </span><span class="n">Interrupt_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* SRAM Test */</span>
+<span class="w">    </span><span class="n">SRAM_March_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* STACK Test */</span>
+<span class="w">    </span><span class="n">Stack_March_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* Stack Overflow and Underflow Test */</span>
+<span class="w">    </span><span class="n">Stack_Memory_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* Flash Test */</span>
+<span class="w">    </span><span class="n">Flash_Test</span><span class="p">(</span><span class="n">INITIAL_TEST</span><span class="p">);</span>
+<span class="w">    </span><span class="n">test_count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="n">print_self_test_footer</span><span class="p">();</span>
+
+<span class="p">}</span>
+<span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">run_runtime_self_tests</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">print_self_test_header</span><span class="p">();</span>
+<span class="w">    </span><span class="n">ip_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* Start Up Test */</span>
+<span class="w">    </span><span class="n">Start_Up_Test</span><span class="p">(</span><span class="n">RUNTIME_TEST</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* Program counter Test */</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SelfTest_PC</span><span class="p">();</span>
+<span class="w">    </span><span class="n">print_result</span><span class="p">(</span><span class="n">ip_index</span><span class="o">++</span><span class="p">,</span><span class="s">&quot;Program Counter Test&quot;</span><span class="p">,</span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* CPU Registers Test*/</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SelfTest_CPU_Registers</span><span class="p">();</span>
+<span class="w">    </span><span class="n">print_result</span><span class="p">(</span><span class="n">ip_index</span><span class="o">++</span><span class="p">,</span><span class="s">&quot;CPU Register Test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* Program Flow Test*/</span>
+<span class="w">    </span><span class="n">ret</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">SelfTest_PROGRAM_FLOW</span><span class="p">();</span>
+<span class="w">    </span><span class="n">print_result</span><span class="p">(</span><span class="n">ip_index</span><span class="o">++</span><span class="p">,</span><span class="s">&quot;Program Flow Test&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ret</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* GPIO Test */</span>
+<span class="w">    </span><span class="n">IO_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cp">#if DMA_ENABLE</span>
+<span class="w">    </span><span class="cm">/* DMAC Test */</span>
+<span class="w">    </span><span class="n">DMAC_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cp">#endif</span>
+<span class="w">    </span><span class="cm">/* Clock Test */</span>
+<span class="w">    </span><span class="n">Clock_Test</span><span class="p">(</span><span class="n">RUNTIME_TEST</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* Interrupt Test */</span>
+<span class="w">    </span><span class="n">Interrupt_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* SRAM Test */</span>
+<span class="w">    </span><span class="n">SRAM_March_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* STACK Test */</span>
+<span class="w">    </span><span class="n">Stack_March_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* Stack Overflow and Underflow Test */</span>
+<span class="w">    </span><span class="n">Stack_Memory_Test</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* Flash Test */</span>
+<span class="w">    </span><span class="n">Flash_Test</span><span class="p">(</span><span class="n">RUNTIME_TEST</span><span class="p">);</span>
+<span class="w">    </span><span class="n">test_count</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="n">print_self_test_footer</span><span class="p">();</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="7">
+<li>In the <code>main.c</code> file, update the <code>main</code> function to execute the self-tests at init and during runtime.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cm">/* Enable global interrupts */</span>
+<span class="n">__enable_irq</span><span class="p">();</span>
+<span class="n">run_initial_self_test</span><span class="p">();</span>
+
+<span class="k">for</span><span class="w"> </span><span class="p">(;;)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">run_runtime_self_tests</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* Delay emulates user code */</span>
+<span class="w">    </span><span class="n">Cy_SysLib_Delay</span><span class="p">(</span><span class="mi">5000u</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="8">
+<li>
+<p>Program the device and then follow the previous instructions for updating the flash checksum.</p>
+</li>
+<li>
+<p>Once the checksum has been updated, all initial and runtime tests should pass.</p>
+</li>
+</ol>
+<p><img src="assets/images/initial_core_peripherals_test.png" alt="Figure" style="width:400px; height:auto; display:block; margin:0 auto;margin-bottom:20px;" /></p>
+<p><img src="assets/images/runtime_core_peripherals_test.png" alt="Figure" style="width:400px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="conclusion_1">Conclusion<a class="headerlink" href="#conclusion_1" title="Permanent link">&para;</a></h3>
+<p>The core peripherals safety tests provide a standard method for confirming that the device is operational during device initialization. These same safety tests can also be performed during runtime to ensure that the device is continuing to operate as expected. Some considerations should be made when executing safety tests during runtime. For example, the GPIO Test confirms that the GPIOs have not been shorted to ground or VCC by setting the GPIO high with an internal pull-up and reading back that the signal is high, and then setting the GPIO low with an internal pull-down and confirming that the signal is low. If the signal is an output, this would cause the output to change states. Other tests, such as the memory march tests, may also need to be considered.</p>
+<h2 id="executing-the-analog-peripherals-safety-tests">Executing the analog peripherals safety tests<a class="headerlink" href="#executing-the-analog-peripherals-safety-tests" title="Permanent link">&para;</a></h2>
+<h3 id="running-the-class-b_safety_test_analog_peripherals-project">Running the Class-B_Safety_Test_Analog_Peripherals project<a class="headerlink" href="#running-the-class-b_safety_test_analog_peripherals-project" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Using the same steps from the core peripherals lab, create the <strong>Class-B_Safety_Test_Analog_Peripherals</strong> code example.</li>
+<li>Create a voltage divider circuit where R1 is a 150 kΩ resistor and R2 is a 75 kΩ resistor. Connect VDDA to the high side of the circuit and ground to the low side of the circuit. Connect P2.0 of the PSOC&trade; 4100T Plus kit to the center of the voltage divider. This causes the signal on P2.0 to go to VDD/3. The default configuration of the hardware sets VDD to 5 V, so the input to P2.0 should be 1.667 V.</li>
+</ol>
+<p><img src="assets/images/analog_self_test_hardware_setup.jpg" alt="Figure" style="width:300px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>Program the project and observe the output.</li>
+</ol>
+<p><img src="assets/images/analog_self_test_prompt.png" alt="Figure" style="width:300px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="4">
+<li>Enter <code>1</code> in the terminal and observe the status of the test.</li>
+</ol>
+<p><img src="assets/images/analog_self_test_output.png" alt="Figure" style="width:400px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="enabling-measurement-and-test-adc-channels">Enabling measurement and test ADC channels<a class="headerlink" href="#enabling-measurement-and-test-adc-channels" title="Permanent link">&para;</a></h3>
+<p>This ADC test utilizes an external voltage reference. This means that, to test the SAR ADC, a separate reference input from the desired measurement input is needed. In the code example project, the input to the SAR ADC is set to P2.0. Add code to measure the input of P2.1 periodically, and then switch to testing the SAR ADC on P2.0 when the user enters <code>1</code> in the terminal.</p>
+<ol>
+<li>Open the device configurator and navigate to the <strong>Peripherals</strong> tab, and then click <strong>PASS 0 12-bit SAR ADC 0</strong>.</li>
+<li>In the <strong>Parameters</strong> view, update the number of channels from 1 to 2, and then navigate to the <strong>Channel 1</strong> settings. Leave <strong>Input Mode</strong> set to <strong>Single-ended</strong>, and then select <strong>P2[1] analog</strong> as the <strong>Ch1 Vplus</strong> input.</li>
+</ol>
+<p><img src="assets/images/sar_adc_adjustments.png" alt="Figure" style="width:700px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>Save and close the device configurator.</li>
+<li>Move the printout of available commands into its own function for repeated use.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">print_available_commands</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="cm">/* Display available commands */</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Available commands </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="cp">#if ADC_ENABLE</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;1 : Run SelfTest for ADC</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="cp">#endif</span>
+<span class="w">    </span><span class="cp">#if COMPARATOR_ENABLE</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;2 : Run SelfTest for Comparator</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="cp">#endif</span>
+<span class="w">    </span><span class="cp">#if OPAMP_ENABLE</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;3 : Run SelfTest for OP-AMP</span><span class="se">\r\n\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="cp">#endif</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="5">
+<li>Call the available commands function after enabling the SAR ADC and after executing the analog tests.</li>
+<li>Create a SysTick callback function.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">volatile</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">systick_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">SysTick_Callback</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">systick_count</span><span class="o">++</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="7">
+<li>Enable the SysTick timer to create a non-blocking periodic 1 ms timer after the <code>cybsp_init</code> function.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="n">Cy_SysTick_Init</span><span class="p">(</span><span class="n">CY_SYSTICK_CLOCK_SOURCE_CLK_CPU</span><span class="p">,((</span><span class="kt">uint32_t</span><span class="p">)(((</span><span class="mi">1000</span><span class="p">)</span><span class="o">/</span><span class="mf">1000000.0</span><span class="p">)</span><span class="o">*</span><span class="mi">48000000</span><span class="p">)));</span>
+<span class="cm">/* Register one of the SysTick callbacks */</span>
+<span class="n">Cy_SysTick_SetCallback</span><span class="p">(</span><span class="mi">0UL</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">SysTick_Callback</span><span class="p">);</span>
+<span class="n">Cy_SysTick_Enable</span><span class="p">();</span>
+</code></pre></div>
+<ol start="8">
+<li>Create a function to run a one-shot ADC conversion.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cm">/** ADC conversion time, uS */</span>
+<span class="cp">#define ADC_CON_TIME_uS             (1000u)</span>
+<span class="kt">void</span><span class="w"> </span><span class="nf">scan_measure_channel</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="kt">int16_t</span><span class="w"> </span><span class="n">adc_res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">guardCnt</span><span class="p">;</span>
+<span class="w">    </span><span class="cm">/* Start ADC conversion */</span>
+<span class="w">    </span><span class="n">Cy_SAR_StartConvert</span><span class="p">(</span><span class="n">CYBSP_DUT_SAR_ADC_HW</span><span class="p">,</span><span class="w"> </span><span class="n">CY_SAR_START_CONVERT_SINGLE_SHOT</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/* Wait for the end of conversion using a guard interval &gt; ADC conversion time */</span>
+<span class="w">    </span><span class="n">guardCnt</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0u</span><span class="p">;</span>
+<span class="w">    </span><span class="k">do</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">guardCnt</span><span class="o">++</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Cy_SysLib_DelayUs</span><span class="p">(</span><span class="mi">1u</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span><span class="w"> </span><span class="k">while</span><span class="p">((</span><span class="n">Cy_SAR_IsEndConversion</span><span class="p">(</span><span class="n">CYBSP_DUT_SAR_ADC_HW</span><span class="p">,</span><span class="w"> </span><span class="n">CY_SAR_RETURN_STATUS</span><span class="p">)</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">CY_SAR_SUCCESS</span><span class="p">)</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">guardCnt</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ADC_TEST_CON_TIME_uS</span><span class="p">));</span>
+<span class="w">    </span><span class="cm">/* Check if timeout */</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">guardCnt</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">ADC_CON_TIME_uS</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="kt">char</span><span class="w"> </span><span class="n">adc_string</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span><span class="w"> </span>
+<span class="w">        </span><span class="cm">/* Read the value from ADC */</span>
+<span class="w">        </span><span class="n">adc_res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cy_SAR_GetResult16</span><span class="p">(</span><span class="n">CYBSP_DUT_SAR_ADC_HW</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_MEASUREMENT_CHANNEL</span><span class="p">);</span>
+<span class="w">        </span><span class="n">adc_res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cy_SAR_CountsTo_mVolts</span><span class="p">(</span><span class="n">CYBSP_DUT_SAR_ADC_HW</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_MEASUREMENT_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="n">adc_res</span><span class="p">);</span>
+<span class="w">        </span><span class="n">sprintf</span><span class="p">(</span><span class="n">adc_string</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;ADC Channel %d Result: %hd mV</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_MEASUREMENT_CHANNEL</span><span class="p">,</span><span class="w"> </span><span class="n">adc_res</span><span class="p">);</span>
+<span class="w">        </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="n">adc_string</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="9">
+<li>Add MACROs to the main.c file to define the test channel and measurement channel indexes and masks.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cp">#define ADC_TEST_CHANNEL                    (0U)</span>
+<span class="cp">#define ADC_MEASUREMENT_CHANNEL             (1U)</span>
+<span class="cp">#define ADC_TEST_CHANNEL_MASK               (1&lt;&lt;ADC_TEST_CHANNEL)</span>
+<span class="cp">#define ADC_MEASUREMENT_CHANNEL_MASK        (1&lt;&lt;ADC_MEASUREMENT_CHANNEL)</span>
+</code></pre></div>
+<ol start="10">
+<li>Disable all ADC channels after enabling the ADC.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cp">#if ADC_ENABLE</span>
+<span class="cm">/* Initialize ADC as per config structure and enable ADC */</span>
+<span class="n">sar_res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">Cy_SAR_Init</span><span class="p">(</span><span class="n">CYBSP_DUT_SAR_ADC_HW</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">CYBSP_DUT_SAR_ADC_config</span><span class="p">);</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">sar_res</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">CY_SAR_SUCCESS</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">CY_ASSERT</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+<span class="p">}</span><span class="w">   </span>
+<span class="n">Cy_SAR_Enable</span><span class="p">(</span><span class="n">CYBSP_DUT_SAR_ADC_HW</span><span class="p">);</span>
+<span class="cp">#endif</span>
+<span class="n">Cy_SAR_DisableChannels</span><span class="p">(</span><span class="n">CYBSP_DUT_SAR_ADC_HW</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_TEST_CHANNEL_MASK</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">ADC_MEASUREMENT_CHANNEL_MASK</span><span class="p">);</span>
+</code></pre></div>
+<ol start="11">
+<li>Enable the test ADC channel before executing the ADC self-test, and then disable all ADC channels after the test.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SELFTEST_CMD_ADC</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">result</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="n">valid_command</span><span class="o">++</span><span class="p">;</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">[Command] : Run SelfTest for ADC</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_SAR_EnableChannels</span><span class="p">(</span><span class="n">CYBSP_DUT_SAR_ADC_HW</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_TEST_CHANNEL_MASK</span><span class="p">);</span>
+<span class="w">    </span><span class="n">adc_test</span><span class="p">();</span>
+<span class="w">    </span><span class="n">Cy_SAR_DisableChannels</span><span class="p">(</span><span class="n">CYBSP_DUT_SAR_ADC_HW</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_TEST_CHANNEL_MASK</span><span class="w"> </span><span class="o">|</span><span class="w"> </span>
+<span class="w">                                                 </span><span class="n">ADC_MEASUREMENT_CHANNEL_MASK</span><span class="p">);</span>
+<span class="p">}</span>
+</code></pre></div>
+<ol start="12">
+<li>Add a MACRO to define the SysTick count to check before running the ADC for the measurement channel.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cp">#define ONE_SECOND_TICK             (1000u)</span>
+</code></pre></div>
+<ol start="13">
+<li>Enable the measurement ADC channel before using the measurement ADC channel, and then disable all ADC channels.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">for</span><span class="p">(;;)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ONE_SECOND_TICK</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">systick_count</span><span class="p">)</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">        </span><span class="n">systick_count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="w">        </span><span class="n">Cy_SAR_EnableChannels</span><span class="p">(</span><span class="n">CYBSP_DUT_SAR_ADC_HW</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_MEASUREMENT_CHANNEL_MASK</span><span class="p">);</span>
+<span class="w">        </span><span class="n">scan_measure_channel</span><span class="p">();</span>
+<span class="w">        </span><span class="n">Cy_SAR_DisableChannels</span><span class="p">(</span><span class="n">CYBSP_DUT_SAR_ADC_HW</span><span class="p">,</span><span class="w"> </span><span class="n">ADC_TEST_CHANNEL_MASK</span><span class="w"> </span><span class="o">|</span><span class="w"> </span>
+<span class="w">        </span><span class="n">ADC_MEASUREMENT_CHANNEL_MASK</span><span class="p">);</span>
+<span class="w">    </span><span class="p">}</span>
+</code></pre></div>
+<ol start="14">
+<li>Program the device and observe the output.</li>
+</ol>
+<p><img src="assets/images/adc_sample_output.png" alt="Figure" style="width:300px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="15">
+<li>Enter <code>1</code> in the terminal and observe the passing test.</li>
+</ol>
+<p><img src="assets/images/adc_self_test_output.png" alt="Figure" style="width:300px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="conclusion_2">Conclusion<a class="headerlink" href="#conclusion_2" title="Permanent link">&para;</a></h3>
+<p>The analog peripherals safety tests provide a standard method for confirming that the peripherals are operating as expected. With the proper design, the analog peripherals can be tested during initialization and during runtime to ensure that the device is operational. The ADC test implements an independent input comparison as defined in Section H.2.18.8 of the IEC 60730 standard. Other PSOC&trade; 4 devices can generate an internal reference voltage to eliminate the need for an external reference for safety tests.</p>
+<h2 id="executing-the-communication-block-safety-test">Executing the communication block safety test<a class="headerlink" href="#executing-the-communication-block-safety-test" title="Permanent link">&para;</a></h2>
+<h3 id="running-the-class-b_safety_test_uart_loopback-project">Running the Class-B_Safety_Test_UART_Loopback project<a class="headerlink" href="#running-the-class-b_safety_test_uart_loopback-project" title="Permanent link">&para;</a></h3>
+<ol>
+<li>Using the same steps from the core peripherals lab, create the <strong>Class-B_Safety_Test_UART_Loopback</strong> code example.</li>
+<li>Program the project and observe the output.</li>
+</ol>
+<p><img src="assets/images/uart_loopback_self_test_output.png" alt="Figure" style="width:300px; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="controlling-uart-gpios-to-send-data-when-not-running-self-test">Controlling UART GPIOs to send data when not running self test<a class="headerlink" href="#controlling-uart-gpios-to-send-data-when-not-running-self-test" title="Permanent link">&para;</a></h3>
+<ol>
+<li>
+<p>Open the device configurator and navigate to the <strong>Pins</strong> tab and expand <strong>Port 2</strong>.</p>
+</li>
+<li>
+<p>Name <strong>P2.0</strong> <strong>UART_RX</strong> and name <strong>P2.1</strong> <strong>UART_TX</strong>. </p>
+</li>
+</ol>
+<p><img src="assets/images/uart_pin_name_assignment.png" alt="Figure" style="width:700px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="3">
+<li>
+<p>Save and close the device configurator.</p>
+</li>
+<li>
+<p>Add custom UART RX and UART TX pin configuration structures to configure the pins for UART use.</p>
+</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="cm">/*******************************************************************************</span>
+<span class="cm">* Global Variables</span>
+<span class="cm">*******************************************************************************/</span>
+<span class="k">const</span><span class="w"> </span><span class="n">cy_stc_gpio_pin_config_t</span><span class="w"> </span><span class="n">uart_rx_pin_config</span><span class="w"> </span><span class="o">=</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">.</span><span class="n">outVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">driveMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CY_GPIO_DM_HIGHZ</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">hsiom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P2_0_SCB2_UART_RX</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">intEdge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CY_GPIO_INTR_DISABLE</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vtrip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CY_GPIO_VTRIP_CMOS</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">slewRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CY_GPIO_SLEW_FAST</span><span class="p">,</span>
+<span class="p">};</span>
+<span class="k">const</span><span class="w"> </span><span class="n">cy_stc_gpio_pin_config_t</span><span class="w"> </span><span class="n">uart_tx_pin_config</span><span class="w"> </span><span class="o">=</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="p">.</span><span class="n">outVal</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">driveMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CY_GPIO_DM_STRONG_IN_OFF</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">hsiom</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">P2_1_SCB2_UART_TX</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">intEdge</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CY_GPIO_INTR_DISABLE</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">vtrip</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CY_GPIO_VTRIP_CMOS</span><span class="p">,</span>
+<span class="w">    </span><span class="p">.</span><span class="n">slewRate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">CY_GPIO_SLEW_FAST</span><span class="p">,</span>
+<span class="p">};</span>
+</code></pre></div>
+<ol start="5">
+<li>Add user code to switch and reconfigure the GPIOs before and after calling <strong>Execute_Application</strong> to direct the UART signals to the GPIOs for application use or for self-test use.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">case</span><span class="w"> </span><span class="no">EXE_CUSTOM_APP</span><span class="p">:</span>
+<span class="w">    </span><span class="cm">/* Configure pins for UART operation. */</span>
+<span class="w">    </span><span class="n">Cy_GPIO_Pin_Init</span><span class="p">(</span><span class="n">UART_RX_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">UART_RX_PIN</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">uart_rx_pin_config</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_GPIO_Pin_Init</span><span class="p">(</span><span class="n">UART_TX_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">UART_TX_PIN</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">uart_tx_pin_config</span><span class="p">);</span>
+<span class="w">    </span><span class="cm">/*A function to mimic application to be executed after UART selftest have passed.*/</span>
+<span class="w">    </span><span class="n">Execute_Application</span><span class="p">();</span>
+<span class="w">    </span><span class="cm">/* Configure pins for SMART-IO Loop-back. */</span>
+<span class="w">    </span><span class="n">Cy_GPIO_Pin_Init</span><span class="p">(</span><span class="n">UART_RX_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">UART_RX_PIN</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UART_RX_config</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_GPIO_Pin_Init</span><span class="p">(</span><span class="n">UART_TX_PORT</span><span class="p">,</span><span class="w"> </span><span class="n">UART_TX_PIN</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">UART_TX_config</span><span class="p">);</span>
+<span class="w">    </span><span class="k">break</span><span class="p">;</span>
+</code></pre></div>
+<ol start="6">
+<li>Update <strong>Execute_Application</strong> to print a message to prove that the UART signals are being redirected to the GPIOs.</li>
+</ol>
+<div class="highlight"><pre><span></span><code><span class="k">static</span><span class="w"> </span><span class="kt">void</span><span class="w"> </span><span class="nf">Execute_Application</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+<span class="p">{</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint16_t</span><span class="w"> </span><span class="n">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0u</span><span class="p">;</span>
+<span class="w">    </span><span class="kt">char</span><span class="w"> </span><span class="n">message</span><span class="p">[</span><span class="mi">100</span><span class="p">];</span>
+<span class="w">    </span><span class="k">static</span><span class="w"> </span><span class="kt">uint32_t</span><span class="w"> </span><span class="n">message_index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span>
+<span class="cp">#if DEBUG_LOG_ENABLE</span>
+<span class="w">    </span><span class="cm">/* Print test counter */</span>
+<span class="w">    </span><span class="n">sprintf</span><span class="p">(</span><span class="n">uart_print_buff</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;</span><span class="se">\r</span><span class="s">General application is being executed... count=%d&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">count</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="n">uart_print_buff</span><span class="p">);</span>
+<span class="cp">#endif</span>
+
+<span class="w">    </span><span class="n">sprintf</span><span class="p">(</span><span class="n">message</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Message %d </span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">message_index</span><span class="p">);</span>
+<span class="w">    </span><span class="n">Cy_SCB_UART_PutString</span><span class="p">(</span><span class="n">CYBSP_DUT_UART_HW</span><span class="p">,</span><span class="w"> </span><span class="n">message</span><span class="p">);</span>
+<span class="w">    </span><span class="n">message_index</span><span class="o">++</span><span class="p">;</span>
+</code></pre></div>
+<ol start="7">
+<li>
+<p>Connect the UART signals from the kit to a MiniProg4 (CY8CKIT-005-A).</p>
+<p>Use the following connections:</p>
+<table>
+<thead>
+<tr>
+<th>MiniProg4 UART signal</th>
+<th>Kit pin</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>UART TX</td>
+<td>P2.0 (PSOC&trade; 4100T Plus UART RX)</td>
+</tr>
+<tr>
+<td>UART RX</td>
+<td>P2.1 (PSOC&trade; 4100T Plus UART TX)</td>
+</tr>
+</tbody>
+</table>
+</li>
+</ol>
+<p><img src="assets/images/uart_self_test_hardware_setup.png" alt="Figure" style="width:300px; height:auto; display:block; margin:0 auto;" /></p>
+<ol start="8">
+<li>Program the device and observe the debug UART terminal and the UART under-test terminal.</li>
+</ol>
+<p><img src="assets/images/uart_self_test_output_with_hardware_setup.png" alt="Figure" style="width:50%; height:auto; display:block; margin:0 auto;margin-bottom:20px;" /></p>
+<p><img src="assets/images/uart_message_output.png" alt="Figure" style="width:20%; height:auto; display:block; margin:0 auto;" /></p>
+<h3 id="conclusion_3">Conclusion<a class="headerlink" href="#conclusion_3" title="Permanent link">&para;</a></h3>
+<p>This test implements the UART data loopback test. The test is successful if the transmitted byte is equal to the received byte and returns 2. Each function call increments the byte sent. After 256 function calls, if all bytes are received correctly, the function returns 3. In this lab, the GPIOs associated with the UART under test were configured to direct the UART signal to them once the test passed. The GPIOs were then configured so that the UART signals were directed to SMART-IO before executing the UART test.</p>
+<h2 id="references">References<a class="headerlink" href="#references" title="Permanent link">&para;</a></h2>
+<ol>
+<li>AN236847: PSOC&trade; 4 IEC 60730 Class B and IEC 61508 SIL safety software library for ModusToolbox&trade;; <a href="https://www.infineon.com/assets/row/public/documents/30/42/infineon-an236847---psoc-tm-4-iec-60730-class-b-and-iec-61508-sil-safety-software-library-for-modustoolbox-tm-applicationnotes-en.pdf?fileId=8ac78c8c8b6555fe018bb0c7af2d027f">Available online</a></li>
+</ol>
+<h2 id="revision-history">Revision history<a class="headerlink" href="#revision-history" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Document revision</th>
+<th>Date</th>
+<th>Description of changes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>**</td>
+<td>2026-07-24</td>
+<td>Initial release</td>
+</tr>
+</tbody>
+</table>
+<h3 id="disclaimer">Disclaimer<a class="headerlink" href="#disclaimer" title="Permanent link">&para;</a></h3>
+<p>All referenced product or service names and trademarks are the property of their respective owners.</p>
+<p>The Bluetooth&reg; word mark and logos are registered trademarks owned by Bluetooth SIG, Inc., and any use of such marks by Infineon is under license.</p>
+<p>PSOC&trade;, formerly known as PSoC&trade;, is a trademark of Infineon Technologies. Any references to PSoC&trade; in this document or others shall be deemed to refer to PSOC&trade;.</p>
+<hr />
+<p>© Cypress Semiconductor Corporation, 2023-2026. This document is the property of Cypress Semiconductor Corporation, an Infineon Technologies company, and its affiliates ("Cypress").  This document, including any software or firmware included or referenced in this document ("Software"), is owned by Cypress under the intellectual property laws and treaties of the United States and other countries worldwide.  Cypress reserves all rights under such laws and treaties and does not, except as specifically stated in this paragraph, grant any license under its patents, copyrights, trademarks, or other intellectual property rights.  If the Software is not accompanied by a license agreement and you do not otherwise have a written agreement with Cypress governing the use of the Software, then Cypress hereby grants you a personal, non-exclusive, nontransferable license (without the right to sublicense) (1) under its copyright rights in the Software (a) for Software provided in source code form, to modify and reproduce the Software solely for use with Cypress hardware products, only internally within your organization, and (b) to distribute the Software in binary code form externally to end users (either directly or indirectly through resellers and distributors), solely for use on Cypress hardware product units, and (2) under those claims of Cypress's patents that are infringed by the Software (as provided by Cypress, unmodified) to make, use, distribute, and import the Software solely for use with Cypress hardware products.  Any other use, reproduction, modification, translation, or compilation of the Software is prohibited.
+<br>
+TO THE EXTENT PERMITTED BY APPLICABLE LAW, CYPRESS MAKES NO WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, WITH REGARD TO THIS DOCUMENT OR ANY SOFTWARE OR ACCOMPANYING HARDWARE, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE.  No computing device can be absolutely secure.  Therefore, despite security measures implemented in Cypress hardware or software products, Cypress shall have no liability arising out of any security breach, such as unauthorized access to or use of a Cypress product. CYPRESS DOES NOT REPRESENT, WARRANT, OR GUARANTEE THAT CYPRESS PRODUCTS, OR SYSTEMS CREATED USING CYPRESS PRODUCTS, WILL BE FREE FROM CORRUPTION, ATTACK, VIRUSES, INTERFERENCE, HACKING, DATA LOSS OR THEFT, OR OTHER SECURITY INTRUSION (collectively, "Security Breach").  Cypress disclaims any liability relating to any Security Breach, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any Security Breach.  In addition, the products described in these materials may contain design defects or errors known as errata which may cause the product to deviate from published specifications. To the extent permitted by applicable law, Cypress reserves the right to make changes to this document without further notice. Cypress does not assume any liability arising out of the application or use of any product or circuit described in this document. Any information provided in this document, including any sample design information or programming code, is provided only for reference purposes.  It is the responsibility of the user of this document to properly design, program, and test the functionality and safety of any application made of this information and any resulting product.  "High-Risk Device" means any device or system whose failure could cause personal injury, death, or property damage.  Examples of High-Risk Devices are weapons, nuclear installations, surgical implants, and other medical devices.  "Critical Component" means any component of a High-Risk Device whose failure to perform can be reasonably expected to cause, directly or indirectly, the failure of the High-Risk Device, or to affect its safety or effectiveness.  Cypress is not liable, in whole or in part, and you shall and hereby do release Cypress from any claim, damage, or other liability arising from any use of a Cypress product as a Critical Component in a High-Risk Device. You shall indemnify and hold Cypress, including its affiliates, and its directors, officers, employees, agents, distributors, and assigns harmless from and against all claims, costs, damages, and expenses, arising out of any claim, including claims for product liability, personal injury or death, or property damage arising from any use of a Cypress product as a Critical Component in a High-Risk Device. Cypress products are not intended or authorized for use as a Critical Component in any High-Risk Device except to the limited extent that (i) Cypress's published data sheet for the product explicitly states Cypress has qualified the product for use in a specific High-Risk Device, or (ii) Cypress has given you advance written authorization to use the product as a Critical Component in the specific High-Risk Device and you have signed a separate indemnification agreement.
+<br>
+Cypress, the Cypress logo, and combinations thereof, ModusToolbox, PSoC, CAPSENSE, EZ-USB, F-RAM, and TRAVEO are trademarks or registered trademarks of Cypress or a subsidiary of Cypress in the United States or in other countries. For a more complete list of Cypress trademarks, visit www.infineon.com. Other names and brands may be claimed as property of their respective owners.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Back to top
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+    
+      
+      <nav class="md-footer__inner md-grid" aria-label="Footer" >
+        
+          
+          <a href="index.html" class="md-footer__link md-footer__link--prev" aria-label="Previous: Home">
+            <div class="md-footer__button md-icon">
+              
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+            </div>
+            <div class="md-footer__title">
+              <span class="md-footer__direction">
+                Previous
+              </span>
+              <div class="md-ellipsis">
+                Home
+              </div>
+            </div>
+          </a>
+        
+        
+      </nav>
+    
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": ".", "features": ["navigation.top", "navigation.footer", "navigation.expand", "toc.integrate", "search.suggest", "search.highlight", "content.code.copy"], "search": "assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}, "version": null}</script>
+    
+    
+      <script src="assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+        <script src="javascripts/mathjax.js"></script>
+      
+        <script src="https://unpkg.com/mathjax@3/es5/tex-mml-chtml.js"></script>
+      
+    
+  </body>
+</html>
