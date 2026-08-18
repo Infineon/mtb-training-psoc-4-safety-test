@@ -46,7 +46,8 @@ This training introduces the safety test library for PSOC™ 4 devices.
 
 ## Content
 - [Presentation](./Presentation/PSOC(TM)%204%20safety%20test%20library%20training.pdf)
-- [Training manual](./Manual/safety-test-lab-manual.md)
+- [Training manual document](./Manual/safety-test-lab-manual.md)
+  - [Training manual web page](https://infineon.github.io/mtb-training-psoc-4-safety-test/)
 - [Lab Solutions](./Lab_Solutions/)
 
 ## How to use this training?
